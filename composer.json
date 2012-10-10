@@ -1,5 +1,6 @@
 {
   "name": "tp/redactor-bundle",
+  "type": "symfony-bundle",
   "description": "Redactor Form Type",
   "keywords": [
     "Form"
