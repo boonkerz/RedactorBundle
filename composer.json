@@ -1,11 +1,8 @@
 {
-  "name": "tp/RedactorBundle",
-  "description": "Image processing for PHP 5.3",
+  "name": "tp/redactor-bundle",
+  "description": "Redactor Form Type",
   "keywords": [
-    "image manipulation",
-    "image processing",
-    "drawing",
-    "graphics"
+    "Form"
   ],
   "homepage": "http://imagine.readthedocs.org/",
   "license": "MIT",
