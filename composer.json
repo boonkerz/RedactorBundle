@@ -5,7 +5,7 @@
   "keywords": [
     "Form"
   ],
-  "homepage": "http://imagine.readthedocs.org/",
+  "homepage": "http://thomas-peterson.de/",
   "license": "MIT",
   "authors": [
     {
@@ -24,7 +24,7 @@
     
   ],
   "require-dev": {
-    
+    "friendsofsymfony/jsrouting-bundle": "*"
   },
   "target-dir": "TP/RedactorBundle",
   "autoload": {
