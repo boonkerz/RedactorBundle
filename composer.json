@@ -25,6 +25,7 @@
   "require-dev": {
     
   },
+  "target-dir": "TP/RedactorBundle",
   "autoload": {
     "psr-0": {
       "TP\\RedactorBundle": ""
