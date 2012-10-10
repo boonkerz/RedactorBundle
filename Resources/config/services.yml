@@ -1,0 +1,24 @@
+parameters:
+
+
+services:
+    tp_redactor.form.type:
+        class: TP\RedactorBundle\Form\Type\RedactorType
+        tags:
+            - { name: form.type, alias: redactor }
+        arguments: [ @service_container ]
+
+    tp_redactor.transformer.strip_js:
+        class: TP\RedactorBundle\Form\Transformer\StripJS
+        tags:
+            - { name: tp_redactor.transformer, alias: strip_js }
+
+    tp_redactor.transformer.strip_css:
+        class: TP\RedactorBundle\Form\Transformer\StripCSS
+        tags:
+            - { name: tp_redactor.transformer, alias: strip_css }
+
+    tp_redactor.transformer.strip_comments:
+        class: TP\RedactorBundle\Form\Transformer\StripComments
+        tags:
+            - { name: tp_redactor.transformer, alias: strip_comments }
