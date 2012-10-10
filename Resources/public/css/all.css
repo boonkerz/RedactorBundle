@@ -1,0 +1,7 @@
+@import url(redactor.css);
+
+
+.redactor_editor div, .redactor_editor p, .redactor_editor ul, .redactor_editor ol, .redactor_editor table,
+.redactor_editor dl, .redactor_editor blockquote, .redactor_editor pre {
+    font-style: normal;
+}
