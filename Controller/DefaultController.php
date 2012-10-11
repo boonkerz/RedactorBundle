@@ -11,7 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/redactor/upload", name="redactor_upload", options={"expose"=true})
+     * @Route("/redactor/upload", name="_redactor_upload", options={"expose"=true})
      */
     public function uploadAction()
     {
@@ -27,7 +27,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/redactor/images", name="redactor_images", options={"expose"=true})
+     * @Route("/redactor/images", name="_redactor_images", options={"expose"=true})
      */
     public function imagesAction()
     {
