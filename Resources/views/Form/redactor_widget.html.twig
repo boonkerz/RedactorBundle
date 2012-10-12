@@ -6,7 +6,11 @@
         <script type="text/javascript">
             {% autoescape false %}
             $(document).ready(function(){
-                $('#{{ id }}').redactor({ imageGetJson: Routing.generate('_redactor_images'), imageUpload: Routing.generate('_redactor_upload') });
+                $('#{{ id }}').redactor({
+                    imageGetJson: Routing.generate('_redactor_images'), 
+                    imageUpload: Routing.generate('_redactor_upload'),
+                    shortcuts: false
+                });
             });
             {% endautoescape %}
         </script>
