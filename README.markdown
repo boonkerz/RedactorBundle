@@ -1,6 +1,8 @@
 Installation 
 ------------
 
+contributors: Bartłomiej Noszka bnlab
+
 To instal this bundle, copy and paste to your composer.json
 
 ```
