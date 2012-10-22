@@ -28,7 +28,7 @@ class RedactorType extends AbstractType
     public function addTransformer(DataTransformerInterface $transformer, $alias)
     {
         if (isset($this->transformers[$alias])) {
-            throw new \Exception('Transformer alias must be unique.');
+            throw new \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException('Transformer alias must be unique.');
         }
         $this->transformers[$alias] = $transformer;
     }
@@ -64,7 +64,7 @@ class RedactorType extends AbstractType
     {
         $resolver->setDefaults(array(
             'required'                     => false,
-            'transformers'                 => $this->container->getParameter('trsteel_ckeditor.ckeditor.transformers'),
+            'transformers'                 => $this->container->getParameter('tp_redactor.editor.transformers'),
         ));
 
         $resolver->setAllowedValues(array(
