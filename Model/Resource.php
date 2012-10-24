@@ -1,33 +1,48 @@
 <?php
 namespace TP\RedactorBundle\Model;
 
-use Symfony\Component\HttpFoundation\File\File;
 use Exception;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+
 /**
- *
+ * Represent a file resource
  */
 class Resource
 {
+    /**
+     * @var File
+     */
     protected $file;
 
+    /**
+     * @var string
+     */
     protected $folder;
 
-    protected $web_dir;
+    /**
+     * @var string
+     */
+    protected $webDir;
 
-    function __construct($web_dir)
+    /**
+     * @param string $webDir
+     */
+    public function __construct($webDir)
     {
-        $this->web_dir = $web_dir;
-    }
-
-    public function getWeb()
-    {
-        return $this->web_dir;
+        $this->webDir = $webDir;
     }
 
     /**
-     * @param string file
-     * @return void
+     * @return string
+     */
+    public function getWeb()
+    {
+        return $this->webDir;
+    }
+
+    /**
+     * @param string $file
      */
     public function setFile($file)
     {
@@ -43,8 +58,7 @@ class Resource
     }
 
     /**
-     * @param string folder
-     * @return void
+     * @param string $folder
      */
     public function setFolder($folder)
     {
@@ -53,6 +67,8 @@ class Resource
 
     /**
      * @return string
+     *
+     * @throws \Exception
      */
     public function getFolder()
     {
@@ -64,7 +80,7 @@ class Resource
     }
 
     /**
-     * @return void
+     * @throws FileException
      */
     public function upload()
     {
@@ -73,7 +89,7 @@ class Resource
             $this->file->move($this->getWeb() . $this->folder, $name);
             $this->file = $name;
         } else {
-            throw new FileException("It must be a Symfony\Component\HttpFoundation\File\File instance");
+            throw new FileException('It must be a Symfony\Component\HttpFoundation\File\File instance');
         }
     }
 
