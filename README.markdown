@@ -1,4 +1,4 @@
-Installation 
+Installation
 ------------
 
 contributors: Bartłomiej Noszka bnlab
@@ -13,7 +13,7 @@ To instal this bundle, copy and paste to your composer.json
 Rember to configure JsRoutingBundle guiding their README file.
 
 
-Configuration 
+Configuration
 -------------
 
 in `config.yml`:
@@ -21,7 +21,7 @@ in `config.yml`:
 ```
 twig:
     form:
-        resources: 
+        resources:
             - 'TPRedactorBundle:Form:redactor_widget.html.twig'
 ```
 
@@ -31,9 +31,10 @@ in `routing.yml`:
 tp_redactor:
     resource: "@TPRedactorBundle/Controller/"
     type:     annotation
-``` 
+```
 
 add CSS and Javascript to your assetic:
 
-CSS: `'@TPRedactorBundle/Resources/public/css/redactor.css'`
-Javascript: `'@TPRedactorBundle/Resources/public/js/redactor.js'`
+ * CSS: `'@TPRedactorBundle/Resources/public/css/redactor.css'`
+ * Javascripts: `'@TPRedactorBundle/Resources/public/js/redactor.js'` and
+`'@TPRedactorBundle/Resources/public/js/tp_redactor.js'`
