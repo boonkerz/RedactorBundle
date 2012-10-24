@@ -15,7 +15,6 @@ class DefaultController extends Controller
      */
     public function uploadAction()
     {
-
         $entity = new Resource($this->container->getParameter('kernel.root_dir') . '/../web/uploads/');
 
         $entity->setFolder("redactor");
@@ -23,6 +22,7 @@ class DefaultController extends Controller
 
         $entity->upload();
         $data = array("filelink" => "/uploads/redactor/".$entity->getFile());
+
         return new JsonResponse($data);
     }
 
@@ -39,13 +39,14 @@ class DefaultController extends Controller
 
         $data = array();
 
-        foreach($iterator->files() as $file) {
+        foreach ($iterator->files() as $file) {
 
             $data[] = array(
                 "thumb" => "/uploads/redactor/".$file->getFilename(),
                 "image" => "/uploads/redactor/".$file->getFilename(),
                 "title" => $file->getFilename(),
-                "folder" => "Folder 1");
+                "folder" => "Folder 1"
+            );
         }
 
         return new JsonResponse($data);

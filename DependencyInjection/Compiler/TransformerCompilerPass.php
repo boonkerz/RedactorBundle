@@ -10,7 +10,6 @@ class TransformerCompilerPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container)
     {
-
         if (false === $container->hasDefinition('tp_redactor.form.type')) {
             return;
         }
