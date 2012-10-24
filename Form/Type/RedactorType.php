@@ -8,27 +8,42 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
 use Symfony\Component\Form\DataTransformerInterface;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
 /**
- * CKEditor type
- *
+ * RedactorJS form type
  */
 class RedactorType extends AbstractType
 {
+    /**
+     * @var ContainerInterface
+     */
     protected $container;
+
+    /**
+     * @var array<DataTransformerInterface>
+     */
     protected $transformers;
 
+    /**
+     * @param ContainerInterface $container
+     */
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }
 
+    /**
+     * @param DataTransformerInterface $transformer
+     * @param string                   $alias
+     *
+     * @throws InvalidConfigurationException
+     */
     public function addTransformer(DataTransformerInterface $transformer, $alias)
     {
         if (isset($this->transformers[$alias])) {
-            throw new \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException('Transformer alias must be unique.');
+            throw new InvalidConfigurationException('Transformer alias must be unique.');
         }
         $this->transformers[$alias] = $transformer;
     }
@@ -50,29 +65,19 @@ class RedactorType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function buildView(FormView $view, FormInterface $form, array $options)
-    {
-
-
-
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'required'                     => false,
-            'transformers'                 => $this->container->getParameter('tp_redactor.editor.transformers'),
+            'required'     => false,
+            'transformers' => $this->container->getParameter('tp_redactor.editor.transformers'),
         ));
 
         $resolver->setAllowedValues(array(
-            'required'               => array(false)
+            'required' => array(false)
         ));
 
         $resolver->setAllowedTypes(array(
-            'transformers'   => 'array'
+            'transformers' => 'array'
         ));
     }
 

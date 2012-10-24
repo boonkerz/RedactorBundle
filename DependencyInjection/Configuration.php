@@ -19,13 +19,13 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('tp_redactor');
-        $rootNode->children()
-            ->variableNode('transformers')
-            ->defaultValue(array(
-            'strip_js', 'strip_css', 'strip_comments'
-            ))
-            ->info("Default data transformers for the submitted html.")
-        ->end();
+        $rootNode
+            ->children()
+                ->variableNode('transformers')
+                    ->defaultValue(array('strip_js', 'strip_css', 'strip_comments'))
+                    ->info("Default data transformers for the submitted html.")
+                ->end()
+            ->end();
 
         return $treeBuilder;
     }
