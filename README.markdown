@@ -67,4 +67,4 @@ Chose your config set at form building :
     $builder->add('your_form_field', 'redactor', array('config_set' => 'basic'));
 ```
 
-All supported redactor options can be found (Here)[http://imperavi.com/redactor/docs/settings/]
+All supported redactor options can be found [Here](http://imperavi.com/redactor/docs/settings/)
