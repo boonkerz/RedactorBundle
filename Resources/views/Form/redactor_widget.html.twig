@@ -5,9 +5,9 @@
         <textarea {{ block('widget_attributes') }}>{{ value }}</textarea>
         <script type="text/javascript">
             if (undefined === window.tp_redactor) {
-                window.tp_redactor = [];
+                window.tp_redactor = {};
             }
-            window.tp_redactor.push('{{ id }}');
+            window.tp_redactor['{{ id }}'] = {{ parameters | json_encode | raw }};
         </script>
     {% endspaceless %}
 {% endblock %}

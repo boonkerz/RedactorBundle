@@ -29,6 +29,10 @@ class TPRedactorExtension extends Extension
             $container->getParameter('twig.form.resources'),
             array('TPRedactorBundle:Form:redactor_widget.html.twig')
         ));
-        $container->setParameter('tp_redactor.editor.transformers', $config['transformers']);
+
+        $container->getDefinition('tp_redactor.form.type')
+            ->addArgument($config['transformers'])
+            ->addArgument($config['config_sets'])
+            ->addArgument($config['default_config_set']);
     }
 }
