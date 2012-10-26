@@ -6,7 +6,6 @@ services:
         class: TP\RedactorBundle\Form\Type\RedactorType
         tags:
             - { name: form.type, alias: redactor }
-        arguments: [ @service_container ]
 
     tp_redactor.transformer.strip_js:
         class: TP\RedactorBundle\Form\Transformer\StripJS

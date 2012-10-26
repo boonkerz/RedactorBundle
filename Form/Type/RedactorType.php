@@ -7,7 +7,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
@@ -17,21 +16,47 @@ use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 class RedactorType extends AbstractType
 {
     /**
-     * @var ContainerInterface
-     */
-    protected $container;
-
-    /**
      * @var array<DataTransformerInterface>
      */
     protected $transformers;
 
     /**
-     * @param ContainerInterface $container
+     * @var array
      */
-    public function __construct(ContainerInterface $container)
+    protected $transformerAliases;
+
+    /**
+     * @var
+     */
+    protected $configSets;
+
+    /**
+     * @var string
+     */
+    protected $defaultConfigSet;
+
+    /**
+     * @param array  $transformers
+     * @param array  $configSets
+     * @param string $defaultConfigSet
+     *
+     * @throws \InvalidArgumentException
+     */
+    public function __construct(array $transformers, array $configSets, $defaultConfigSet)
     {
-        $this->container = $container;
+        $this->transformerAliases = $transformers;
+        $this->configSets         = $configSets;
+        $this->defaultConfigSet   = $defaultConfigSet;
+
+        if (!array_key_exists($defaultConfigSet, $configSets)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    'The default config set "%s" must be in defined config sets (%s).',
+                    $defaultConfigSet,
+                    implode(', ', array_keys($configSets))
+                )
+            );
+        }
     }
 
     /**
@@ -63,21 +88,32 @@ class RedactorType extends AbstractType
     }
 
     /**
+     * @{inheritDoc}
+     */
+    public function buildView(FormView $view, FormInterface $form, array $options)
+    {
+        $view->vars['parameters'] = $this->configSets[$options['config_set']];
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'required'     => false,
-            'transformers' => $this->container->getParameter('tp_redactor.editor.transformers'),
+            'transformers' => $this->transformerAliases,
+            'config_set'   => $this->defaultConfigSet
         ));
 
         $resolver->setAllowedValues(array(
-            'required' => array(false)
+            'required'   => array(false),
+            'config_set' => array_keys($this->configSets),
         ));
 
         $resolver->setAllowedTypes(array(
-            'transformers' => 'array'
+            'transformers' => 'array',
+            'config_set'   => 'string',
         ));
     }
 
