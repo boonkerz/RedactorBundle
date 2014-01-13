@@ -1,5 +1,5 @@
 {
-    "name":"karser/tp-redactor-bundle",
+    "name":"tp/tp-redactor-bundle",
     "type":"symfony-bundle",
     "description":"Redactor Form Type",
     "keywords":["Form", "Redactor", "wysiwyg"],
